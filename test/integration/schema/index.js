@@ -296,6 +296,18 @@ module.exports = function(knex) {
         });
       });
     });
+    describe('dropColumn', function() {
+      it('successfully drops the last column', function() {
+        return knex.schema.table('accounts', function (tbl) {
+          tbl.string('drop_test');
+        })
+        .then(function () {
+          return knex.schema.table('accounts', function (tbl) {
+            tbl.dropColumn('drop_test');
+          });
+        });
+      });
+    });
 
   });
 
